@@ -7509,7 +7509,7 @@ size_t base64::base64_decode(char const * src, char * dst, size_t off, size_t cn
 bool base64::base64_valid(uint8_t const * src, size_t off, size_t cnt)
 {
     /* check parameters */
-    if (src == 0 || src + off == 0)
+    if (src == 0)
         return false;
     if (cnt == 0U)
         cnt = std::strlen(reinterpret_cast<char const *>(src));
