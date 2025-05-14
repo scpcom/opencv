@@ -409,6 +409,20 @@ set(CMAKE_EXE_LINKER_FLAGS         "${CMAKE_EXE_LINKER_FLAGS} ${OPENCV_EXTRA_EXE
 set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} ${OPENCV_EXTRA_EXE_LINKER_FLAGS_RELEASE}")
 set(CMAKE_EXE_LINKER_FLAGS_DEBUG   "${CMAKE_EXE_LINKER_FLAGS_DEBUG} ${OPENCV_EXTRA_EXE_LINKER_FLAGS_DEBUG}")
 
+# turn off options not valid for C/ObjC
+foreach(flags CMAKE_C_FLAGS CMAKE_C_FLAGS_RELEASE CMAKE_C_FLAGS_DEBUG)
+  string(REPLACE "-Werror=non-virtual-dtor" "" ${flags} "${${flags}}")
+  string(REPLACE "-Wsign-promo" "" ${flags} "${${flags}}")
+  string(REPLACE "-Wno-delete-non-virtual-dtor" "" ${flags} "${${flags}}")
+  string(REPLACE "-fvisibility-inlines-hidden" "" ${flags} "${${flags}}")
+endforeach()
+
+# turn off options not valid for C++/ObjC++
+foreach(flags CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_RELEASE CMAKE_CXX_FLAGS_DEBUG)
+  string(REPLACE "-Wmissing-prototypes" "" ${flags} "${${flags}}")
+  string(REPLACE "-Wstrict-prototypes" "" ${flags} "${${flags}}")
+endforeach()
+
 if(MSVC)
   # avoid warnings from MSVC about overriding the /W* option
   # we replace /W3 with /W4 only for C++ files,
