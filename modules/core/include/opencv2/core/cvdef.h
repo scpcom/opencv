@@ -728,14 +728,18 @@ __CV_ENUM_FLAGS_BITWISE_XOR_EQ   (EnumType, EnumType)                           
 #    undef CV_CXX11
 #  endif
 #endif
+#if defined(__cplusplus)
 #ifndef CV_CXX11
 #  error "OpenCV 4.x+ requires enabled C++11 support"
+#endif
 #endif
 
 #define CV_CXX_MOVE_SEMANTICS 1
 #define CV_CXX_MOVE(x) std::move(x)
 #define CV_CXX_STD_ARRAY 1
+#if defined(__cplusplus)
 #include <array>
+#endif
 #ifndef CV_OVERRIDE
 #  define CV_OVERRIDE override
 #endif
