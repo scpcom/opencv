@@ -1,13 +1,13 @@
 set(ade_src_dir "${OpenCV_BINARY_DIR}/3rdparty/ade")
-set(ade_filename "v0.1.1f.zip")
-set(ade_subdir "ade-0.1.1f")
-set(ade_md5 "b624b995ec9c439cbc2e9e6ee940d3a2")
+set(ade_filename "v0.1.1f-gcc-13.zip")
+set(ade_subdir "ade-0.1.1f-gcc-13")
+set(ade_md5 "22363c7ae5281b6f5679d5f214dcb2d9")
 ocv_download(FILENAME ${ade_filename}
              HASH ${ade_md5}
              URL
                "${OPENCV_ADE_URL}"
                "$ENV{OPENCV_ADE_URL}"
-               "https://github.com/opencv/ade/archive/"
+               "https://github.com/scpcom/ade/archive/"
              DESTINATION_DIR ${ade_src_dir}
              ID ADE
              STATUS res
